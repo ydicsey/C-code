@@ -17,4 +17,4 @@ int searchInsert(int* nums, int numsSize, int target){
             right = pivot - 1;
     }
     return left;
-}
+} 
