@@ -7,7 +7,7 @@ long int mystrtol(const char *nptr, char **endptr , int base);
 ```
 - NOT FINISHED YET
 # 4. My String Library v2
-```c=
+```c
 char *mystrchr(const char *s, int c);
 char *mystrrchr(const char *s, int c);
 size_t mystrspn(const char *s, const char *accept);
