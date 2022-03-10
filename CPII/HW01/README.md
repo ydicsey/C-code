@@ -1,7 +1,7 @@
 # 1. Another Character Encoding
 - user type *EXIT* to quit this program.
 # 2. Replacement
-- The keywords and the new word should be colored.
+- The keywords and the newwords should be colored.
 # 3. My String Library v1
 ```c
 long int mystrtol(const char *nptr, char **endptr , int base);
