@@ -1,5 +1,5 @@
 # 1. Another Character Encoding
-- user type *EXIT* to quit this program.
+- user type `<EXIT>` to quit this program.
 # 2. Replacement
 - The keywords and the newwords should be colored.
 # 3. My String Library v1
