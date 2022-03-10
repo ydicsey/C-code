@@ -18,7 +18,7 @@ char *mystrstr(const char *haystack , const char *needle);
 char *mystrtok(char *str, const char *delim);
 ```
 # 5. Split
-- **how to use?**
+## 5.1 **how to use?**
 ```c
 char str[] = "  a bb   c      eee";
 char **pppList;
@@ -32,7 +32,7 @@ for( i=0; i<count; i++ )
 }
 return 0;
 ```
-- **output**
+## 5.2 **output**
 ```c
 split.count = 4
 str: a
