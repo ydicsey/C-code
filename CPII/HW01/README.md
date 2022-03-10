@@ -2,7 +2,7 @@
 - user type *EXIT* to quit this program.
 # 2. Replacement
 # 3. My String Library v1
-```c=
+```c
 long int mystrtol(const char *nptr, char **endptr , int base);
 ```
 - NOT FINISHED YET
@@ -18,7 +18,7 @@ char *mystrtok(char *str, const char *delim);
 ```
 # 5. Split
 - **how to use?**
-```c=
+```c
 char str[] = "  a bb   c      eee";
 char **pppList;
 int count;
