@@ -1,5 +1,3 @@
-# 40947072S-陳品翰
-
 # hw0201 mymatch
 ```c
 int mymatch(char ***pppList , const char *pStr, const char *pPattern);
