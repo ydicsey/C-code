@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include "mat.h"
+#include "math.h"
 
 // 4 nonlinear equations, 3 unknowns
 #define M 4
