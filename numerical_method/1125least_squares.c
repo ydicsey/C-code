@@ -10,9 +10,11 @@
 #define NumOfvariable 2
 
 // fit function: a + bx + cx^2 + dx^3
+
+// model: y = c1 * t^c2
 // fit function: ln(y) = ln(c1) + c2ln(t)
 //                     =    k   + c2ln(t)
-// fit function: 16.3 * h^2.42
+// fit function: 16.3 * t^2.42
 
 // ATA * x = ATb
 int main()
