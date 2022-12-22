@@ -2,84 +2,25 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-#define N 13
-#define NumOfvariable 4
+#include <stdbool.h>
 
-void multiplyMatrices(double firstMatrix[][N], double secondMatrix[][N], double multResult[][N], int rowFirst, int columnFirst, int rowSecond, int columnSecond)
-{	
-    int i, j, k;
+#include "math.h"
 
-	// Initializing elements of matrix mult to 0.
-	for(i = 0; i < rowFirst; ++i)
-	{
-		for(j = 0; j < columnSecond; ++j)
-		{
-			multResult[i][j] = 0;
-		}
-	}
+#define N 10
+#define NumOfvariable 2
 
-	// Multiplying matrix firstMatrix and secondMatrix and storing in array mult.
-	for(i = 0; i < rowFirst; ++i)
-	{
-		for(j = 0; j < columnSecond; ++j)
-		{
-			for(k=0; k < columnFirst; ++k)
-			{
-				multResult[i][j] += firstMatrix[i][k] * secondMatrix[k][j];
-			}
-		}
-	}
-}
+// fit function: a + bx + cx^2 + dx^3
+// fit function: ln(y) = ln(c1) + c2ln(t)
+//                     =    k   + c2ln(t)
+// fit function: 16.3 * h^2.42
 
-void getTranspose(double A[][N], double T[][N], int row, int column)
-{
-    for (int i = 0; i < row; ++i)
-    {
-        for (int j = 0; j < column; ++j) 
-        {
-            T[j][i] = A[i][j];
-        }
-    }
-}
-
-void print2d(double **A, int x, int y)
-{
-    printf("\n");
-    int i, j;
-    for(i = 0; i < x; i++)
-    {
-        for(j = 0; j < y; j++)
-        {
-            printf("%.5f \t", A[i][j]);
-        }
-        printf("\n");
-    }
-}
-
-int findmain(double **matrix, int ROW, int num)
-{
-    int maxRowindex = ROW, i;
-    float maxRowvalue; 
-    maxRowvalue = fabs(matrix[ROW][ROW]);
-    for(i = ROW; i < num; i++)
-    {
-        if(fabs(matrix[i][ROW]) > maxRowvalue)
-        {
-            maxRowvalue = fabs(matrix[i][ROW]);
-            maxRowindex = i;
-            // printf("\nin find main i: %d\n", i);
-        }
-    }
-    // printf("\nin find main max: %d\n", maxRowindex);
-    return maxRowindex;
-}
-
+// ATA * x = ATb
 int main()
 {
-    double A[N][NumOfvariable];
-    double x[N] = {0.0 , 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5 , 2.75, 3.0 };
+    double a_A[N][NumOfvariable];
+    // double x[N] = {0.0 , 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5 , 2.75, 3.0 };
+    double x[N] = {0.912, 0.986, 1.06, 1.13, 1.19, 1.26, 1.32, 1.38, 1.41, 1.49};
     // create A
-    printf("\nA:\n");
     for(int i = 0; i < N; i++)
     {
         for(int j = 0; j < NumOfvariable; j++)
@@ -89,192 +30,58 @@ int main()
             {
                 case 0:
                 {
-                    A[i][j] = 1;
+                    // fit function: a + bx + cx^2 + dx^3
+                    // a_A[i][j] = 1;
+                    a_A[i][j] = 1;
                     break;
                 }
                 case 1:
                 {
-                    A[i][j] = x[i];
+                    // a_A[i][j] = x[i];
+                    a_A[i][j] = log(x[i]);
                     break;
                 }
                 case 2:
                 {
-                    A[i][j] = x[i] * x[i];
+                    a_A[i][j] = x[i] * x[i];
                     break;
                 }
                 case 3:
                 {
-                    A[i][j] = x[i] * x[i] * x[i];
+                    a_A[i][j] = x[i] * x[i] * x[i];
                     break;
                 }
             }
-            printf("  %f  ", A[i][j]);
+            // printf("  %f  ", a_A[i][j]);
         }
-        printf("\n");
+        // printf("\n");
     }
 
-    double AT[NumOfvariable][N];
-    // get transpose
+    printf("\nA:\n");
+    mat A = matrix_copy(NumOfvariable, a_A, N);
+    matrix_show(A);
+    mat AT = matrix_getTranspose(A);
     printf("\nAT:\n");
-    for(int i = 0; i < NumOfvariable; i++)
-    {
-        for(int j = 0; j < N; j++)
-        {
-            AT[i][j] = A[j][i];
-            printf("  %f  ", AT[i][j]);
-        }
-        printf("\n");
-    }
-
-    // AT * A
-    double ATA[NumOfvariable][NumOfvariable+1];
-    // initial ATA
-    printf("\nATA\n");
-    for(int i = 0; i < NumOfvariable; i++)
-    {
-        for(int j = 0; j < NumOfvariable; j++)
-        {
-            ATA[i][j] = 0;
-        }
-    }
-    for(int i = 0; i < NumOfvariable; i++)
-    {
-        for(int j = 0; j < NumOfvariable; j++)
-        {
-            for(int k = 0; k < N; k++)
-            {
-                ATA[i][j] += AT[i][k] * A[k][j];
-            }
-            printf(" %f ", ATA[i][j]);
-        }
-        printf("\n");
-    }
-
+    matrix_show(AT);
+    mat ATA = matrix_mul(AT, A);
+    printf("\nATA:\n");
+    matrix_show(ATA);
     // AT * B
-    double B[N] = {6.3806, 7.1338, 9.1662, 11.5545, 15.6414, 22.7371, 32.0696, 47.0756, 73.1596, 111.4684, 175.9895, 278.5550, 446.4441};
-    double ATB[NumOfvariable];
-    // initial ATB
-    printf("\nATB\n");
-    for(int i = 0; i < NumOfvariable; i++)
+    // double a_B[1][N] = {6.3806, 7.1338, 9.1662, 11.5545, 15.6414, 22.7371, 32.0696, 47.0756, 73.1596, 111.4684, 175.9895, 278.5550, 446.4441};
+    double a_B[1][N] = {13.7, 15.9, 18.5, 21.3, 23.5, 27.2, 32.7, 36, 38.6, 43.7};
+    for(int i = 0; i < N; i++)
     {
-        ATB[i] = 0.0;
+        a_B[0][i] = log(a_B[0][i]);
     }
-    for(int i = 0; i < NumOfvariable; i++)
-    {
-        for(int j = 0; j < N; j++)
-        {
-            ATB[i] += AT[i][j] * B[j];
-            // printf("%d, %d, %f * %f = %f\n", i, j, AT[i][j], B[j], ATB[i]);
-        }
-        printf("  %f  ", ATB[i]);
-        printf("\n");
-    }
-
-    float tmp;
-    int i, j, k;
-    int numOfVariable = NumOfvariable;
-
-    double** permu_mat = (double **)malloc(numOfVariable * sizeof(double*));
-    double** matrix = (double **)malloc(numOfVariable * sizeof(double*));
-    double** lower = (double **)malloc(numOfVariable * sizeof(double*));
-
-    for(i = 0; i < numOfVariable; i++)
-    {
-        permu_mat[i] = (double *)malloc(numOfVariable * sizeof(double));
-        matrix[i] = (double *)malloc((numOfVariable + 1) * sizeof(double));
-        lower[i] = (double *)malloc((numOfVariable + 1) * sizeof(double));
-
-        for(j = 0; j < numOfVariable; j++)
-        {
-            matrix[i][j] = ATA[i][j];
-            if(i == j)
-            {
-                permu_mat[i][j] = 1;
-            }
-        }
-        matrix[i][j] = ATB[i];
-    }
-    printf("\nmatrix ==> ATA(x) = ATB:");
-    print2d(matrix, numOfVariable, numOfVariable+1);
-    // 計算PA=LU
-    // suppose A=M*n, L=(zero matrix)m*m, P=(identity matrix)m*m
-    // start with i = j = 1;
-
-    double ratio;
-    double sum, ans[numOfVariable];
-    double *temp = (double*)malloc(numOfVariable * sizeof(double));
-    int maxRowindex;
-
-    // 開始找最大的 row index
-    for(k = 0; k < numOfVariable; k++)
-    {
-        maxRowindex = findmain(matrix, k, numOfVariable);
-        // 交換row k<->maxindex
-        temp = matrix[k];
-        matrix[k] = matrix[maxRowindex];
-        matrix[maxRowindex] = temp;
-        temp = permu_mat[k];
-        permu_mat[k] = permu_mat[maxRowindex];
-        permu_mat[maxRowindex] = temp;
-        temp = lower[k];
-        lower[k] = lower[maxRowindex];
-        lower[maxRowindex] = temp;
-        // printf("\nmatrix:");
-        // print2d(matrix, numOfVariable, numOfVariable+1);
-        // printf("k: %d, index: %d\n", k, maxRowindex);
-        for(i = k+1; i < numOfVariable; i++)
-        {
-            // printf("\n ik: %f, kk: %f", matrix[i][k], matrix[k][k]);
-            ratio = matrix[i][k] / matrix[k][k];
-            lower[i][k] = ratio;
-            for(j = 0; j <= numOfVariable; j++)
-            {
-                matrix[i][j] = matrix[i][j] - ratio* matrix[k][j];
-            }
-            // printf("\nL:");
-            // print2d(lower, numOfVariable, numOfVariable);
-            // printf("\nU:");
-            // print2d(matrix, numOfVariable, numOfVariable);
-            // printf("\nP:");
-            // print2d(permu_mat, numOfVariable, numOfVariable);
-        }
-
-        ans[numOfVariable - 1] = matrix[numOfVariable-1][numOfVariable] / matrix[numOfVariable-1][numOfVariable-1];
-        // matrix[numOfVariable-1][numOfVariable] = matrix[numOfVariable-1][numOfVariable] / matrix[numOfVariable-1][numOfVariable-1];
-        for(i = numOfVariable - 1; i > 0; i--)
-        {
-            // print2d(matrix, numOfVariable, numOfVariable + 1);
-            sum = 0;
-            for(j = i; j < numOfVariable; j++)
-            {
-                sum += matrix[i-1][j] * ans[j];
-                // sum += matrix[i-1][j] * matrix[i][numOfVariable];
-                // printf("%.1f\n", sum);
-            }
-            sum *= -1;
-            sum += matrix[i-1][j];
-            ans[i-1] = sum/matrix[i-1][i-1];
-            // matrix[i-1][numOfVariable] = sum/matrix[i-1][i-1];
-        }
-    }
-    // lower 對角線=1
-    for(i = 0; i < numOfVariable; i++)
-    {
-        lower[i][i] = 1;
-    }
-    // printf("\nL:");
-    // print2d(lower, numOfVariable, numOfVariable);
-    // printf("\nU:");
-    // print2d(matrix, numOfVariable, numOfVariable);
-    // printf("\nP:");
-    // print2d(permu_mat, numOfVariable, numOfVariable);
-    // printf("\nmatrix:");
-    // print2d(matrix, numOfVariable, numOfVariable+1);
-
-    printf("\nans: ( ");
-    for(i = 0; i < numOfVariable-1; i++)
-    {
-        printf("%f, ", ans[i]);
-    }
-    printf("%f )\n", ans[i]);
+    mat B = matrix_copy(N, a_B, 1);
+    B = matrix_getTranspose(B);
+    printf("\nB:\n");
+    matrix_show(B);
+    mat ATB = matrix_mul(AT, B);
+    printf("\nATB:\n");
+    matrix_show(ATB);
+    mat matrix_full = extension(ATA, ATB);
+    mat x_k = gaussian_pviot(matrix_full);
+    matrix_show(x_k);
+    printf(" %f \n", exp(x_k->v[0][0]));
 }
