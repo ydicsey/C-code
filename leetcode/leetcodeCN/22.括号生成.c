@@ -14,6 +14,21 @@
 // 卡塔蘭數 1430
 #define MAX_SIZE 1430 
 
+/*
+      dfs demo
+        n = 2
+        (2,2)
+         " "
+        (1,2)    
+         "("
+    (0,2)   (1,1)
+    "(("    "()"
+    (0,1)   (0,1)
+    "(()"   "()("
+    (0,0)   (0,0)
+    "(())"  "()()"
+*/
+
 void dfs(int length, int left_cnt, int right_cnt, int *returnSize, char **result, char *str, int n)
 {
     if(left_cnt == 0 && right_cnt == 0)
