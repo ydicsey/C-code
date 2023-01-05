@@ -41,7 +41,7 @@ void dfs(int length, int left_cnt, int right_cnt, int *returnSize, char **result
 
 char ** generateParenthesis(int n, int* returnSize){
     char *str = (char*)calloc((2 * n + 1), sizeof(char));
-    char **result = malloc((2 * n + 1) * MAX_SIZE * sizeof(char));
+    char **result = calloc((2 * n + 1) * MAX_SIZE, sizeof(char));
 
     *returnSize = 0;
     dfs(0, n, n, returnSize, result, str, n);
