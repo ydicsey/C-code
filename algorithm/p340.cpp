@@ -1,51 +1,57 @@
-// C++ implementation of the approach
-#include <bits/stdc++.h>
+#include <stdio.h> 
+#include <unordered_map>
+#include <algorithm>
+
+/*  
+直接聯想到把數據切成兩半的做法。
+這題的類題不勝枚舉，把集合拆成兩半，每半部的集合都枚舉所有 2^N/2 種subset
+枚舉其中一半部時 hash 每個總合的值出現多少次，而枚舉另外一半部時
+就可以根據 hash 值得知他有多少種和前一半部的組合加總可以湊成 T    
+*/
+
 using namespace std;
-// https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/
 
-#define maxN 20
-#define maxSum 50
-#define minSum 50
-#define base 50
+unordered_map<long long, int> dp;
+int n, i;
+long long m, A[45], sum[1<<20];
 
-// To store the states of DP
-int dp[maxN][maxSum + minSum];
-bool v[maxN][maxSum + minSum];
+int main() {
+	scanf("%d %lld", &n, &m);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%lld", &A[i]);
+    }
 
-// Function to return the required count
-int findCnt(int* arr, int i, int required_sum, int n)
-{
-	// Base case
-	if (i == n) {
-		if (required_sum == 0)
-			return 1;
-		else
-			return 0;
+	long long ans = 0;
+	int list1 = n/2, list2 = n - n/2;
+	
+	dp.clear();
+	
+	for (int i = 0; i < list1; i++)
+	{
+		sum[1<<i] = A[i];
 	}
+	for (int i = 0; i < (1<<list1); i++) 
+	{
+		sum[i] = sum[i - ((i-1)&i)] + sum[(i-1)&i];
+		long long x = sum[i];
+		dp[x]++;
+	}
+	for (int i = 0; i < list2; i++)
+		sum[1<<i] = A[i + list1];
+	for (int i = 0; i < (1<<list2); i++) {
+		sum[i] = sum[i - ((i-1)&i)] + sum[(i-1)&i];
+		long long x = sum[i];
+		if (dp.count(m - x))
+		{
+			ans += dp[m - x];
+		}
+	}
+	if (m == 0)		
+    {
+        ans--;
+    }
 
-	// If the state has been solved before
-	// return the value of the state
-	if (v[i][required_sum + base])
-		return dp[i][required_sum + base];
-
-	// Setting the state as solved
-	v[i][required_sum + base] = 1;
-
-	// Recurrence relation
-	dp[i][required_sum + base]
-		= findCnt(arr, i + 1, required_sum, n)
-		+ findCnt(arr, i + 1, required_sum - arr[i], n);
-	return dp[i][required_sum + base];
-}
-
-// Driver code
-int main()
-{
-	int arr[] = {-7494, -25474, 3688, -24702, 12960, 29556, -11219, 30162, -18870, -20459, 30950, -25456, 1992, -8622, -23842, -18825, -31862, -2364, 29730, -32718, -4409, -23123, 29983, 2280, 26854, -18284, -2668, 302064, 9840};
-	int n = sizeof(arr) / sizeof(int);
-	int x = 14139;
-
-	cout << findCnt(arr, 0, x, n);
-
+	printf("%lld\n", ans);
 	return 0;
 }
