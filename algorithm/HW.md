@@ -67,7 +67,7 @@ Dynamic Programming](https://courses.cs.washington.edu/courses/cse421/15au/lectu
 至此最後我們會得出一個 bandwidths 總和最小值，即是這題所要的答案
 
 我畫了一個第三筆測資的說明，有精簡掉一些邊
-![image](https://i.imgur.com/xuBPXiY.png)
+![image](https://github.com/ydicsey/C-code/blob/master/algorithm/image/p352.png?raw=true)
 
 
 在題敘中有提到一個 Hint，在手寫題第一題中有提到如何找規則 2. 中的瓶頸
