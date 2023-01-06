@@ -3,6 +3,8 @@
 ## p304. Combination Lock
 ## p305. Another Treasure
 ## p306. Auction
+- reference
+    - [评论区的一个奇妙的解法｜不用DP](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/solution/by-gopherhiro-hl5x/)
 # HW3
 ## p338. Bento
 ## p339. Leva
