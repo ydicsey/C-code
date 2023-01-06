@@ -54,25 +54,20 @@ Dynamic Programming](https://courses.cs.washington.edu/courses/cse421/15au/lectu
 
 ## 351.	Metro
 ## 352. Budget Cut
-- 這題簡單來說就是要從圖中選出一個網路（子圖），選擇的方法有三個漸進的規則
+- tips from teaching assistant
+    - 這題簡單來說就是要從圖中選出一個網路（子圖），選擇的方法有三個漸進的規則：
 
-1. 網路的 cabel 數量愈少愈好，同學已經點出來了，這個規則限制找的子圖一定會是樹
+    1. 網路的 cabel 數量愈少愈好，同學已經點出來了，這個規則限制找的子圖一定會是樹，圖中的所有 spanning tree 都符合條件，所以可能不只一個方案，繼續看規則 2.
 
-圖中的所有 spanning tree 都符合條件，所以可能不只一個方案，繼續看規則 2.
+    2. 網路中瓶頸（最小的 bandwidth）要愈大愈好，以第三筆範例來說，所有 spanning tree 裡面，可以找到瓶頸最大的為瓶頸為 8 的時候，同樣地，圖中可能有多個可以選的子圖符合這個條件，所以繼續套用規則 3.
 
-2. 網路中瓶頸（最小的 bandwidth）要愈大愈好，以第三筆範例來說，所有 spanning tree 裡面，可以找到瓶頸最大的為瓶頸為 8 的時候，同樣地，圖中可能有多個可以選的子圖符合這個條件，所以繼續套用規則 3.
+    3. 選擇 bandwidths 總和最小的那個
 
-3. 選擇 bandwidths 總和最小的那個
-
-至此最後我們會得出一個 bandwidths 總和最小值，即是這題所要的答案
-
-我畫了一個第三筆測資的說明，有精簡掉一些邊
-![image](https://github.com/ydicsey/C-code/blob/master/algorithm/image/p352.png?raw=true)
+    - 至此最後我們會得出一個 bandwidths 總和最小值，即是這題所要的答案
+    ![image](https://github.com/ydicsey/C-code/blob/master/algorithm/image/p352.png?raw=true)
 
 
-在題敘中有提到一個 Hint，在手寫題第一題中有提到如何找規則 2. 中的瓶頸
-
-所以同學剩下規則 3. 需要思考，怎麼從符合規則 2. 的網路中找到 bandwidths 總和最小的那個
+    在題敘中有提到一個 Hint，在手寫題第一題中有提到如何找規則 2. 中的瓶頸，所以同學剩下規則 3. 需要思考，怎麼從符合規則 2. 的網路中找到 bandwidths 總和最小的那個
 ## 353. Traveling Salesman Problem
 - Description
 - method
@@ -81,7 +76,7 @@ Dynamic Programming](https://courses.cs.washington.edu/courses/cse421/15au/lectu
         - [Fibonacci Heap](https://www.programiz.com/dsa/fibonacci-heap)
 ## 354.	Rent
 - Description
-- 同學您好:
+- tips from teaching assistant
 
 可以先把每個Uier和他朋友們分別住在A和B公寓的情況畫出來，如第一張圖。
 
