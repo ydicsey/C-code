@@ -15,8 +15,8 @@
     - [course.2020.ntnu.algorithms/HW5/pB](https://github.com/c5h11oh/course.2020.ntnu.algorithms/blob/master/HW5/pB/main.cpp)
     - [LeetCode 2258. Escape the Spreading Fire](https://leetcode.cn/problems/escape-the-spreading-fire/)
     - [youtube. LeetCode 2258. Escape the Spreading Fire](https://www.youtube.com/watch?v=xUijWmULpzA&ab_channel=HuifengGuan)
-- tips from teaching assistant
-    - 我可以先把所有岩漿的位置記錄起來，從這些位置開始往外延伸，一秒就延伸一格，所以 T 秒之後每個岩漿會往外延伸 T 格，這樣就可以生出 T 秒之後房間的樣子了，方便我們快速知道每一格最早在幾秒後會有岩漿，經過剛剛的步驟生出房間的樣子，根據這個房間從床 B 出發去判斷是否可以走到門 D，可以的話代表時間還很充裕，不行的話代表太遲了，以上步驟可以用 BFS 實現。
+<!-- - tips from teaching assistant
+    - 我可以先把所有岩漿的位置記錄起來，從這些位置開始往外延伸，一秒就延伸一格，所以 T 秒之後每個岩漿會往外延伸 T 格，這樣就可以生出 T 秒之後房間的樣子了，方便我們快速知道每一格最早在幾秒後會有岩漿，經過剛剛的步驟生出房間的樣子，根據這個房間從床 B 出發去判斷是否可以走到門 D，可以的話代表時間還很充裕，不行的話代表太遲了，以上步驟可以用 BFS 實現。 -->
 
 ## p340. Target Sum
 - Description
@@ -52,7 +52,7 @@ Dynamic Programming](https://courses.cs.washington.edu/courses/cse421/15au/lectu
 
 ## 351.	Metro
 ## 352. Budget Cut
-- tips from teaching assistant
+<!-- - tips from teaching assistant
     - 這題簡單來說就是要從圖中選出一個網路（子圖），選擇的方法有三個漸進的規則：
 
     1. 網路的 cabel 數量愈少愈好，同學已經點出來了，這個規則限制找的子圖一定會是樹，圖中的所有 spanning tree 都符合條件，所以可能不只一個方案，繼續看規則 2.
@@ -71,9 +71,9 @@ Dynamic Programming](https://courses.cs.washington.edu/courses/cse421/15au/lectu
 - method
     - use Dijkstra pseudocode
     - reference
-        - [Fibonacci Heap](https://www.programiz.com/dsa/fibonacci-heap)
+        - [Fibonacci Heap](https://www.programiz.com/dsa/fibonacci-heap) -->
 ## 354.	Rent
-- Description
+<!-- - Description
 - tips from teaching assistant
 
 可以先把每個Uier和他朋友們分別住在A和B公寓的情況畫出來，如第一張圖。
@@ -87,4 +87,4 @@ S -> A 代表住A公寓的Unhappiness，B -> T 代表住B公寓的Unhappiness。
 我們可以在把第一張圖簡化成第二張圖，因為A_i和B_i是同一個人。
 
     Hint: 1. 如圖: 紅色的X是正解的選法，可以觀察看看，最後選完公寓住的時候，是不是一定會造成S -> T不連通的狀況?  
-2. 有什麼方法可以找出所有符合情況中的最小值?
+2. 有什麼方法可以找出所有符合情況中的最小值? -->
