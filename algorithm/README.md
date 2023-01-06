@@ -1,5 +1,3 @@
-# CSU0018 - Algorithms HWs
-
 # HW2
 ## p303. Treasure
 ## p304. Combination Lock
