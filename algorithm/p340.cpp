@@ -51,7 +51,6 @@ int main() {
     {
         ans--;
     }
-
 	printf("%lld\n", ans);
 	return 0;
 }
