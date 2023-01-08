@@ -51,46 +51,26 @@ int* threeEqualParts(int* arr, int arrSize, int* returnSize){
     }
 
     int CNT_first_part = 0, CNT_second_part = 0, CNT_third_part = 0;
-    int CNT_one_inApart = CNT_one / 3, i = 0, tmp = 0;
+    int CNT_one_inApart = CNT_one / 3, tmp = 0;
 
-    while (i < arrSize)
+    for(int i = 0; i < arrSize; i++)
     {
         if(arr[i] == 1)
         {
-            CNT_first_part = i;
-            break;
-        }
-        i++;
-    }
-    i++;
-    tmp = 0;
-    while (i < arrSize)
-    {
-        if(arr[i] == 1)
-        {
-            tmp ++;
-            if (tmp == CNT_one_inApart)
+            if(tmp == 0)
+            {
+                CNT_first_part = i;
+            }
+            else if(tmp == CNT_one_inApart)
             {
                 CNT_second_part = i;
-                break;
             }
-        }
-        i++;
-    }
-    i++;
-    tmp = 0;
-    while (i < arrSize)
-    {
-        if(arr[i] == 1)
-        {
-            tmp ++;
-            if (tmp == CNT_one_inApart)
+            else if(tmp == CNT_one_inApart *2)
             {
                 CNT_third_part = i;
-                break;
             }
+            tmp++;
         }
-        i++;
     }
     // printf("%d, %d, %d", CNT_first_part, CNT_second_part, CNT_third_part);
 
