@@ -72,7 +72,6 @@ int* threeEqualParts(int* arr, int arrSize, int* returnSize){
             tmp++;
         }
     }
-    // printf("%d, %d, %d", CNT_first_part, CNT_second_part, CNT_third_part);
 
     while (CNT_third_part < arrSize && (arr[CNT_first_part] == arr[CNT_second_part]) && (arr[CNT_second_part] == arr[CNT_third_part]))
     {
@@ -90,7 +89,6 @@ int* threeEqualParts(int* arr, int arrSize, int* returnSize){
 
     ans[0] = -1;
     ans[1] = -1;
-
     return ans;
 }
 // @lc code=end
