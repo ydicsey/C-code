@@ -1,7 +1,7 @@
 #include <iostream>
 #include <set>
 using namespace std;
- 
+
 int main() {
     int A, B, n;
     while (cin >> A >> B){
