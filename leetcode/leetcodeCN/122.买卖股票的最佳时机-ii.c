@@ -13,6 +13,7 @@ int maxProfit(int* prices, int pricesSize){
     {
         ans += (prices[i] > prices[i-1] ? prices[i] - prices[i-1] : 0);
     }
+    
     return ans;
 }
 // @lc code=end
