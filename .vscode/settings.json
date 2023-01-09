@@ -13,6 +13,13 @@
         "initializer_list": "c",
         "regex": "c",
         "valarray": "c",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "stdio.h": "c",
+        "*.tcc": "c",
+        "algorithm": "c",
+        "random": "c",
+        "istream": "c",
+        "limits": "c",
+        "numeric": "c"
     }
 }
