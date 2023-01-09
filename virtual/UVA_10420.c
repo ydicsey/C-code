@@ -35,7 +35,6 @@ int main()
         }
 
         printf("%s %d\n",country[i], j-i);
-
         i = j;
     }
 }
