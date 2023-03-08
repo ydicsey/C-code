@@ -1,37 +1,42 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 
 int main()
 {
     char new[105] = {0};
     char key[105] = {0};
+    char orig[10005] = {0};
     char temp[105] = {0};
-    char tmp;
 
-    scanf("%s", key);
-    scanf("%s", new);
+    // scanf("%s", key);
+    fgets(key, 100, stdin);
+    // scanf("%s", new);
+    fgets(new, 100, stdin);
+    key[strlen(key) - 1] = '\0';
+    new[strlen(new) - 1] = '\0';
 
-    while(scanf("%c", &tmp) != EOF)
+    char *fast;
+
+    while(fgets(orig, 10000, stdin) && orig)
     {
-        if(key[0] == tmp)
+        for(fast = orig; *fast != 0; fast++)
         {
-            fgets(temp, strlen(key), stdin);
-
-            if(!(strncmp(temp, &key[1], strlen(key))))
+            if(*fast == key[0])
             {
-                printf("%s", new);
+                if( !(strncmp(fast, key, strlen(key))))
+                {
+                    printf("%s", new);
+                    fast += strlen(key) -1;
+                }
+                else
+                {
+                    printf("%c", *fast);
+                }
             }
             else
             {
-                printf("%c", tmp);
-                printf("%s", temp);
+                printf("%c", *fast);
             }
-        }
-        else
-        {
-            printf("%c", tmp);
         }
     }
 }
