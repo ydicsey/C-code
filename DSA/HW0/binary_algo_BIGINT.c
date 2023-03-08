@@ -3,16 +3,13 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define MAXSIZE 300
-
-typedef struct binary_algo_BIGINT
+// base = 10000
+typedef struct BIGINT
 {
-    /* data */
-    int array[MAXSIZE];
-    bool sign;
+    int *arr;
+    int sign;
     int length;
-}S_BIGINT;
-
+}s_BIGINT;
 
 int main()
 {
