@@ -21,6 +21,10 @@
         "istream": "c",
         "limits": "c",
         "numeric": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "tuple": "cpp",
+        "map": "cpp",
+        "iostream": "cpp",
+        "cmath": "cpp"
     }
 }
