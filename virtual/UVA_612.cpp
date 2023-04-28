@@ -23,6 +23,22 @@ private:
 void String::Set(const char s[])
 {
     // TODO
+    for(int i = 0; i < strlen(s); ++i)
+    {
+        str_[i] = s[i];
+    }
+    int len = size();
+    int cnt = 0;
+    for(int k = 0 ; k < len-1 ; k++)
+    {
+        for(int l = k ; l < len ; l++)
+        {
+            if(int(s[k]) > int(s[l]))
+                cnt++;
+        }
+    }
+    // cout << cnt << endl;
+    unsortedness_ = cnt;
 }
 // ------------------------------------------------------------------
 ostream & operator << (ostream &os, const String &rhs)
@@ -49,7 +65,7 @@ int main()
             data[i].Set(str);
         }
 
-        stable_sort(data, data+N, /* TODO: lambda */);
+        stable_sort(data, data+N, [] (const String &lhs, const String &rhs) { return lhs.Unsortedness() < rhs.Unsortedness(); });
         for (int i=0; i<N; i+=1)
         {
             cout << data[i] << endl;
