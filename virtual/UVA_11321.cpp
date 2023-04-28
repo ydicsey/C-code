@@ -7,6 +7,7 @@ class Compare
 public:
     void SetDivisor(int d) { divisor_ = d; }
     // TODO: operator ()
+    bool operator()(int lhs, int rhs) const;
 private:
     int divisor_ = 1;
 };
@@ -14,6 +15,48 @@ private:
 bool Compare::operator()(int lhs, int rhs) const
 {
     // TODO
+    int l = (lhs % divisor_);
+    int r = (rhs % divisor_);
+    // 若餘數相同
+    if(l == r)
+    {
+        int ll = (((lhs % 2)+2)%2), rr = (((rhs % 2)+2)%2);
+        if(ll || rr)
+        {
+            if(ll)
+            {
+                // lhs => 奇數
+                if(rr)
+                {
+                    // lhs => 奇數, rhs => 奇數
+                    // 都是奇數 => 大奇數 < 小奇數
+                    return (rhs < lhs);
+                }
+                else 
+                {
+                    // lhs => 奇數, rhs => 偶數
+                    // 奇數 < 偶數
+                    return true;
+                }
+            }
+            else
+            {
+                // lhs => 偶數
+                if(rr)
+                {
+                    // lhs => 偶數, rhs => 奇數
+                    // 偶數 < 奇數
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            // 都是偶數
+            return (lhs < rhs);
+        }
+    }
+    return (l < r);
 }
 // ------------------------------------------------------------------
 int main()
