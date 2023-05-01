@@ -4,6 +4,25 @@
 
 using namespace std;
 
+template< typename T>
+T find_max_element(T begin, const T end)
+{
+    if(begin == end)
+    {
+        return end;
+    }
+    T max = begin;
+    begin++;
+    for(; begin != end; begin++)
+    {
+        if(*max < *begin)
+        {
+            max = begin;
+        }
+    }
+    return max;
+}
+
 int main()
 {
     int N = 0;
@@ -19,7 +38,7 @@ int main()
             cin >> tmp;
             v.emplace_back(tmp);
         }
-        int max = *max_element(v.begin(), v.end());
+        int max = *find_max_element(v.begin(), v.end());
         cout << "Case " << i << ": " <<max << endl;
     }
 }
