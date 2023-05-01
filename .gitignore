@@ -1,3 +1,7 @@
 DSA/ntnu_40947072S
 CPII/NOJ
-.out
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
