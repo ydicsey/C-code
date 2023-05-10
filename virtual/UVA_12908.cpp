@@ -24,12 +24,12 @@ int main()
     while(cin >> N, N)
     {
         vector<int>::iterator low ;
-        low = lower_bound(table.begin(), table.end(), N);
-        if(!(*low - N))
-        {
-            cout << low-table.begin() + 1 << " " << low-table.begin() + 1<< endl;
-        }
-        else
+        low = upper_bound(table.begin(), table.end(), N);
+        // if(!(*low - N))
+        // {
+        //     cout << low-table.begin() + 1 << " " << low-table.begin() + 1<< endl;
+        // }
+        // else
         {
             cout << *low-N << " " << low-table.begin() << endl;
         }
